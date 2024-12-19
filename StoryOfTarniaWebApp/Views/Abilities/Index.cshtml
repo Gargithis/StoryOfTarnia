@@ -1,0 +1,22 @@
+﻿@model List<Ability>
+<h1>Abilities</h1>
+
+<p>Learn about the six core abilities of creatures in Tarnia.</p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Ability</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model.OrderBy(x=>x.AbilityID))
+        {
+            <tr>
+                <td>@obj.AbilityName</td>
+                <td>@obj.AbilityDesc</td>
+            </tr>
+        }
+    </tbody>
+</table>

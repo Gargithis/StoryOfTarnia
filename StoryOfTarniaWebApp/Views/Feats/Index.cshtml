@@ -1,0 +1,47 @@
+﻿@model List<Feat>
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h1>Feats</h1>
+            <p>Learn about Feats & techniques that adventurers use in Tarnia.</p>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Feats" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Create new Feat
+            </a>
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Feat</th>
+            <th>Tier</th>
+            <th>Requirement</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model.OrderBy(x => x.Tier).ThenBy(u => u.Name))
+        {
+            <tr>
+                <td>@obj.Name</td>
+                <td>@obj.Tier</td>
+                <td>@obj.Prerequisite</td>
+                <td>@obj.Description</td>
+                <td>
+                    <div class="w-75 btn-group" role="group">
+                        <a asp-controller="Feats" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
+                            <i class="bi bi-pencil-square"></i> Edit
+                        </a>
+                        <a asp-controller="Feats" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2">
+                            <i class="bi bi-trash-fill"></i> Delete
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
